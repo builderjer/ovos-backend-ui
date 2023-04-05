@@ -1,0 +1,129 @@
+{% extends "base.html" %}
+{% block head %}
+<script src="{{ url_for('admin.static', filename='js/backend.js') }}"></script>
+{% endblock head %}
+{% block body %}
+<div id="main_block" class="container">
+    <div id="header_title" class="highlight_bkgnd text-center round_top">{{ page_title }}</div>
+    <div id="scrolling_container" class="scrolling_container">
+    <table class="m-2">
+        <tr class="lg_txt header_value">
+            <th>Setting</th>
+            <th>Value</th>
+        </tr>
+        <form id="backend_form" action="{{ url_for('admin.test') }}" method="POST" onload=check_for_changes()>
+            <input id="backend_submit_button" type="submit" hidden=true>
+            <tr class="table_value">
+                <th title="{{ tooltips.DEVICE_AUTHENTICATION }}">Device Authentication</th>
+                <td>
+                    {% if skip_auth %}
+                    <input type="checkbox" name="dev_auth" id="skip_auth" checked onchange=made_changes('skip_auth')>
+                    {% else %}
+                    <input type="checkbox" name="dev_auth" id="skip_auth" onchange=made_changes('skip_auth')>
+                    {% endif %}
+                    <label for="dev_auth">Enabled</label>
+                </td>
+            </tr>
+            <tr class="table_value">
+                <th title="{{ tooltips.OVERRIDE_LOCATION }}">Location Override</th>
+                <td>
+                    {% if override_location %}
+                    <input type="checkbox" id="override_location"  name="override_location" onchange=change_location_override() checked>
+                    {% else %}
+                    <input type="checkbox" id="override_location"  name="override_location" onchange=change_location_override()>
+                    {% endif %}
+                    <label for="override_location">Enabled</label>
+                </td>
+            </tr>
+            <tr id="location_button_row" class="table_value" hidden=true>
+                <td>
+                <a id="location_link" href="{{ url_for('location.index', last_page='backend.index') }}"><button id="location_button" type="button" class="btn" hidden=true>Set Location</button></a>
+                </td>
+            </tr>
+            <tr class="table_value">
+                <th title="{{ tooltips.GEOLOCATE }}">IP Geolocate</th>
+                <td>
+                    {% if geolocate %}
+                    <input type="checkbox" id="geolocate" name="geolocate" checked onchange=change_geolocate()>
+                    {% else %}
+                    <input type="checkbox" id="geolocate" name="geolocate" onchange=change_geolocate()>
+                    {% endif %}
+                    <label for="geolocate">Enabled</label>
+                </td>
+            </tr>
+            <tr class="table_value">
+                <th title="{{ tooltips.TTS }}">Default TTS</th>
+                <td>
+                    <select id="tts_dropdown" class="bkend_dropdown" name="default_tts" onchange=made_changes("default_tts")>
+                        {% for tts in tts_ids.avaliable %}
+                        {% if tts == tts_ids.default %}
+                        <option value="{{ tts }}" selected>{{ tts }}</option>
+                        {% else %}
+                        <option value="{{ tts }}">{{ tts }}</option>
+                        {% endif %}
+                        {% endfor %}
+                    </select>
+                </td>
+            </tr>
+            <tr class="table_value">
+                <th title="{{ tooltips.WAKEWORD }}">Default Wakeword</th>
+                <td>
+                    <select id="ww_dropdown" class="bkend_dropdown" name="default_ww" onchange=made_changes("default_ww")>
+                        {% for ww in ww_ids.avaliable %}
+                        {% if ww == ww_ids.default %}
+                        <option value="{{ ww }}" selected>{{ ww }}</option>
+                        {% else %}
+                        <option value="{{ ww }}">{{ ww }}</option>
+                        {% endif %}
+                        {% endfor %}
+                    </select>
+                </td>
+            </tr>
+            <tr class="table_value">
+                <th title="{{ tooltips.DATE_FORMAT }}">Date Format</th>
+                <td>
+                    <select id="df_dropdown" class="bkend_dropdown" name="date_format" onchange=made_changes("date_format")>
+                        {% for dt in date_format.avaliable %}
+                        {% if dt == date_format.default %}
+                        <option value="{{ dt }}" selected>{{ dt }}</option>
+                        {% else %}
+                        <option value="{{ dt }}">{{ dt }}</option>
+                        {% endif %}
+                        {% endfor %}
+                    </select>
+                </td>
+            </tr>
+            <tr class="table_value">
+                <th title="{{ tooltips.TIME_FORMAT }}">Time Format</th>
+                <td>
+                    <select id="tf_dropdown" class="bkend_dropdown" name="time_format" onchange=made_changes("time_format")>
+                        {% for tf in time_format.avaliable %}
+                        {% if tf == time_format.default %}
+                        <option value="{{ tf }}" selected>{{ tf }}</option>
+                        {% else %}
+                        <option value="{{ tf }}">{{ tf }}</option>
+                        {% endif %}
+                        {% endfor %}
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <th title="{{ tooltips.SYSTEM_UNITS }}">System Units</th>
+                <td>
+                    <select id="su_dropdown" class="bkend_dropdown" name="system_unit" onchange=made_changes("system_unit")>
+                        {% for su in system_unit.avaliable %}
+                        {% if su == system_unit.default %}
+                        <option value="{{ su }}" selected>{{ su }}</option>
+                        {% else %}
+                        <option value="{{ su }}">{{ su }}</option>
+                        {% endif %}
+                        {% endfor %}
+                    </select>
+                </td>
+            </tr>
+        </form>
+    </table>
+
+    </div>
+</div>
+{% endblock body %}

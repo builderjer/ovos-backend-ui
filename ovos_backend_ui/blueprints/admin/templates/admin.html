@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block body %}
+
+    <div id="admin_block">
+        <div id="main_block" class="container text-center">
+            <div id="header_title" class="highlight_bkgnd round_top">{{ page_title }}</div>
+            <div id="scrolling_container" class="scrolling_container">
+                <div class="row">
+                    <div class="col p-2">
+                        <a href="{{ url_for('backend.index') }}"><button type="button" class="btn">Backend Management</button></a>
+                    </div>
+                    <div class="w-100"></div>
+                    <div class="col p-2">
+                        <a href="{{ url_for('devices.index') }}"><button type="button" class="btn">Device Management</button></a>
+                    </div>
+                    <div class="w-100"></div>
+                    <div class="col p-2">
+                        <button type="button" class="btn">OAuth Applications</button>
+                    </div>
+                    <div class="w-100"></div>
+                    <div class="col p-2">
+                        <button type="button" class="btn">Microservices</button>
+                    </div>
+                    <div class="w-100"></div>
+                    <div class="col p-2">
+                        <button type="button" class="btn">Selene Proxy</button>
+                    </div>
+                    <div class="w-100"></div>
+                    <div class="col p-2">
+                        <button type="button" class="btn">Metrics</button>
+                    </div>
+                    <div class="col p-2">
+                        <button type="button" class="btn">Datasets</button>
+                    </div>
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock body %}

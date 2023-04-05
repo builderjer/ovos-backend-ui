@@ -1,0 +1,145 @@
+{% extends "base.html" %}
+{% block head %}
+<link type="text/css" href="{{ url_for('devices.static', filename='css/devices.css') }}" rel="stylesheet">
+<script src="{{ url_for('devices.static', filename='js/devices.js') }}"></script>
+{% endblock head %}
+{% block body %}
+<div id="main_block" class="container">
+<div id="header_title" class="highlight_bkgnd text-center round_top">{{ page_title }}</div>
+<div id="extra_info" class="header_value text-center sm_txt">All options are optional</div>
+<div id="scrolling_container" class="scrolling_container">
+    <table class="m-2">
+        <tr class="lg_txt header_value">
+            <th>Setting</th>
+            <th>Value</th>
+        </tr>
+        <form id="backend_form" action="{{ url_for('devices.pair_device') }}" method="POST">
+        <div>
+            <tr class="table_value">
+                <th title="">Device Name</th>
+                <td>
+                    <input id="device_name" type="text" placeholder="OVOS" class="table_text_value" name="device_name">
+                </td>
+            </tr>
+            <tr class="table_value">
+                <th title="" class="table_text_label">Device Placement</th>
+                <td>
+                    <input id="device_placement" type="text" placeholder="kitchen" class="table_text_value" name="device_placement">
+                </td>
+            </tr>
+            <tr class="table_value">
+                <th title="">Email</th>
+                <td>
+                    <input id="email" type="email" placeholder="ovos@email.com" class="table_text_value" name="email">
+                </td>
+            </tr>
+            <tr class="table_value">
+                <th title="">Location</th>
+                <td>
+                    <a href="{{ url_for('location.index', last_page='devices.pair_new_device') }}"><button id="location_button" type="button" class="btn">View Location</button></a>
+                </td>
+            </tr>
+            {{ supported_langs.avaliable|safe }}
+            <tr class="table_value">
+                <th title="">Opt-in</th>
+                <td>
+                    {% if opt_in %}
+                    <input type="checkbox" id="opt_in"  name="opt_in" checked>
+                    {% else %}
+                    <input type="checkbox" id="opt_in"  name="opt_in">
+                    {% endif %}
+                    <label for="opt_in">Enabled</label>
+                </td>
+            </tr>
+            <tr class="table_value">
+                <th title="">Block Selene</th>
+                <td>
+                    {% if block_selene %}
+                    <input type="checkbox" id="block_selene"  name="block_selene" checked>
+                    {% else %}
+                    <input type="checkbox" id="block_selene"  name="block_selene">
+                    {% endif %}
+                    <label for="block_selene">Enabled</label>
+                </td>
+            </tr>
+            <tr class="table_value">
+                <th title="{{ tooltips.DATE_FORMAT }}">Date Format</th>
+                <td>
+                    <select id="df_dropdown" class="bkend_dropdown" name="date_format">
+                        {% for dt in date_format.avaliable %}
+                        {% if dt == date_format.default %}
+                        <option value="{{ dt }}" selected>{{ dt }}</option>
+                        {% else %}
+                        <option value="{{ dt }}">{{ dt }}</option>
+                        {% endif %}
+                        {% endfor %}
+                    </select>
+                </td>
+            </tr>
+            <tr class="table_value">
+                <th title="{{ tooltips.TIME_FORMAT }}">Time Format</th>
+                <td>
+                    <select id="tf_dropdown" class="bkend_dropdown" name="time_format">
+                        {% for tf in time_format.avaliable %}
+                        {% if tf == time_format.default %}
+                        <option value="{{ tf }}" selected>{{ tf }}</option>
+                        {% else %}
+                        <option value="{{ tf }}">{{ tf }}</option>
+                        {% endif %}
+                        {% endfor %}
+                    </select>
+                </td>
+            </tr>
+            <tr class="table_value">
+                <th title="{{ tooltips.SYSTEM_UNITS }}">System Units</th>
+                <td>
+                    <select id="su_dropdown" class="bkend_dropdown" name="system_unit">
+                        {% for su in system_unit.avaliable %}
+                        {% if su == system_unit.default %}
+                        <option value="{{ su }}" selected>{{ su }}</option>
+                        {% else %}
+                        <option value="{{ su }}">{{ su }}</option>
+                        {% endif %}
+                        {% endfor %}
+                    </select>
+                </td>
+            </tr>
+            <tr class="table_value">
+                <th title="{{ tooltips.TTS }}">Default Voice</th>
+                <td>
+                    <select id="tts_dropdown" class="bkend_dropdown" name="default_tts">
+                        {% for tts in tts_ids.avaliable %}
+                        {% if tts == tts_ids.default %}
+                        <option value="{{ tts }}" selected>{{ tts }}</option>
+                        {% else %}
+                        <option value="{{ tts }}">{{ tts }}</option>
+                        {% endif %}
+                        {% endfor %}
+                    </select>
+                </td>
+            </tr>
+            <tr class="table_value">
+                <th title="{{ tooltips.WAKEWORD }}">Default Wakeword</th>
+                <td>
+                    <select id="ww_dropdown" class="bkend_dropdown" name="default_ww">
+                        {% for ww in ww_ids.avaliable %}
+                        {% if ww == ww_ids.default %}
+                        <option value="{{ ww }}" selected>{{ ww }}</option>
+                        {% else %}
+                        <option value="{{ ww }}">{{ ww }}</option>
+                        {% endif %}
+                        {% endfor %}
+                    </select>
+                </td>
+            </tr>
+            <tr>
+            <td colspan="2" class="text-center p-2"><button id="new_device_submit" type="submit" class="btn">Pair New Device</button></td>
+            </tr>
+            </div>
+    </table>
+
+
+</div>
+</div>
+
+{% endblock body %}

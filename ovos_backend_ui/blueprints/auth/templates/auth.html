@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block body %}
+<div id="login_title" class="highlight_bkgnd round_top text-center pt-1 mt-3 ovos_dk_txt_color">
+LOGIN
+</div>
+        <form action="login" method="POST" class="m-2">
+            <div id="login_block" class="lt_bkgnd round_corners pb-1">
+
+                <div id="user_block" class="pt-1 pb-1">
+                    <label id="user_label" for="user_text" class="form-label">User:</label>
+                    <input id="user_text" type="text" class="form-control" placeholder="User Name" name="user_id">
+                </div>
+                <div id="password_block" class="pb-1">
+                    <label id="password_label" for="password_text" class="form-label">Password:</label>
+                    <input id="password_text" type="password" class="form-control" placeholder="password" name="password">
+                </div>
+                <button id="login_button" type="submit" class="btn_lt_bkgnd mt-2">Submit</button>
+            </div>
+        </form>
+
+{% endblock body %}

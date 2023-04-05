@@ -1,0 +1,107 @@
+{% extends "base.html" %}
+
+{% block body %}
+{% include "back_logout_buttons.html" %}
+    <div id="backend_choice_container" class="lt_bkgnd round_corners">
+        <div id="backend_title" class="title text-center pb-1">
+            BACKEND CONFIGURATION
+        </div>
+        <div id="backend_block">
+            <div class="container text-center">
+                <div class="overflow-scroll">
+                    <table class="m-2">
+                        <tr class="lg_txt">
+                            <th>Setting</th>
+                            <th>Value</th>
+                        </tr>
+                        <tr>
+                            <th title="{{ tooltips.DEVICE_AUTHENTICATION }}">Device Authentication</th>
+                            <td>
+                                <form id="dev_auth_form" action="{{ url_for('config_change', config_key='skip_auth', config_value='dev_auth', reverse_bool='true') }}" method="POST">
+                                    <input type="checkbox" name="dev_auth" id="dev_auth" onchange="my_test('dev_auth_form')">
+                                    <label for="dev_auth">Enabled</label>
+                                </form>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th title="{{ tooltips.OVERRIDE_LOCATION }}">Location Override</th>
+                            <td>
+                                <form id="override_location_form" action="{{ url_for('config_change', config_key='override_location', config_value='override_location', parse_bool='true', validate_loc_geo='true') }}" method="POST">
+                                    <input type="checkbox" id="override_location"  name="override_location" onchange="my_test('override_location_form')">
+                                    <label for="override_location">Enabled</label>
+                                </form>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th title="{{ tooltips.GEOLOCATE }}">IP Geolocate</th>
+                            <td>
+                                <form id="geolocate_form" action="{{ url_for('config_change', config_key='ip_geolocate', config_value='ip_geolocate', parse_bool='true', validate_loc_geo='true') }}" method="POST">
+                                    <input type="checkbox" id="ip_geolocate" name="ip_geolocate" onchange="my_test('geolocate_form')">
+                                    <label for="ip_geolocate">Enabled</label>
+                                </form>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th title="{{ tooltips.SELENE_PROXY }}">Selene Proxy</th>
+                            <td>
+                                <form id="selene_proxy_form">
+                                    <input type="checkbox" id="selene_proxy">
+                                    <label for="selene_proxy">Enabled</label>
+                                </form>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th title="{{ tooltips.TTS }}">Default TTS</th>
+                            <td>
+                                <form id="tts_form" action="{{ url_for('config_change', config_key='default_tts', config_value='tts_dropdown') }}" method="POST">
+                                    <select id="tts_dropdown" name="tts_dropdown" onchange=my_test('tts_form')>
+                                        {% for tts in tts_ids.avaliable %}
+                                            {% if tts == tts_ids.default %}
+                                            <option value="{{ tts }}" selected>{{ tts }}</option>
+                                            {% else %}
+                                            <option value="{{ tts }}">{{ tts }}</option>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </select>
+                                </form>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th title="{{ tooltips.WAKEWORD }}">Default Wakeword</th>
+                            <td>
+                                <form id="ww_form" action="{{ url_for('config_change', config_key='default_ww', config_value='ww_dropdown') }}" method="POST">
+                                    <select id="ww_dropdown" name="ww_dropdown" onchange=my_test('ww_form') >
+                                        {% for ww in ww_ids.avaliable %}
+                                            {% if ww == ww_ids.default %}
+                                            <option value="{{ ww }}" selected>{{ ww }}</option>
+                                            {% else %}
+                                            <option value="{{ ww }}">{{ ww }}</option>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </select>
+                                </form>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th title="{{ tooltips.DATE_FORMAT }}">Date Format</th>
+                            <td>Dropdown</td>
+                        </tr>
+                        <tr>
+                            <th title="{{ tooltips.TIME_FORMAT }}">Time Format</th>
+                            <td>Dropdown</td>
+                        </tr>
+                        <tr>
+                            <th title="{{ tooltips.SYSTEM_UNITS }}">System Units</th>
+                            <td>Dropdown</td>
+                        </tr>
+                    </table>
+                    <div id="location_container">
+                        <button type="button" class="btn">
+                            View Default Location
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock body %}

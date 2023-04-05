@@ -1,0 +1,4 @@
+json_database
+Flask
+Flask-login
+passlib

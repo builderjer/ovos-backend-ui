@@ -1,0 +1,52 @@
+<!--<div id="login_block" class="text-center mt-2 pb-2 round_corners lt_bkgnd">
+<div id="title" class="ovos_red round_top">
+<h2 class="ovos_dk_txt_color">LOGIN</h2>
+</div>
+<div id="user_block" class="container text-start">
+<label for="user" class="form-label">User Name:</label>
+<input id="user" type="text" class="form-control" placeholder="User Name" name="user">
+</div>
+<div id="password_block" class="container text-start">
+<label for="pwd" class="form-label">Password:</label>
+<input id="pwd" type="password" class="form-control" placeholder="password" name="password">
+</div>
+<button type="submit" class="btn">Submit</button>
+</div>-->
+
+
+
+@media screen and (max-width: 640px) {
+    #page_image {
+        width: 30%;
+        margin: auto;
+        display: block;
+        }
+
+    #login_block {
+        width: 90%;
+        margin: auto;
+        }
+
+    #user_block {
+        margin-bottom: 0.375rem;
+        }
+
+    #password_block {
+        margin-bottom: 0.375rem;
+        }
+    }
+
+    @media screen and (max-height: 640px) {
+        #right_panel {
+            height: 70vh;
+            margin-top: 0;
+            }
+
+        #login_block {
+            height: 70vh;
+            }
+
+        #password_block {
+            margin-bottom: 0.375rem;
+            }
+        }

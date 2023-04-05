@@ -1,0 +1,148 @@
+* {
+    font-family: soto, sans;
+}
+
+body {
+    background-color: #243d3d;
+    height: 100vh;
+    width: 100vw;
+}
+
+/* COLORS */
+
+.lt_txt {
+    color: #FFF1F1;
+}
+
+.dk_txt {
+    color: #243D3D;
+}
+
+.highlight_txt {
+    color: #FF1A1A;
+}
+
+.lt_bkgnd {
+    background-color: #FFF1F1;
+}
+
+.dk_bkgnd {
+    background-color: #243d3d;
+}
+
+.highlight_bkgnd {
+    background-color: #FF1A1A;
+}
+
+/* FONT SIZES */
+
+.x_sm_txt {
+    font-size: 5px;
+}
+
+.sm_txt {
+    font-size: 10px;
+}
+
+.std_txt {
+    font-size: 15px;
+}
+
+.lg_txt {
+    font-size: 20px;
+}
+
+/* BUTTONS */
+
+.btn {
+    background-color: #243D3D;
+    color: #FFF1F1;
+    border-radius: 5px;
+}
+
+.btn:hover {
+    background-color: #FFF1F1;
+    color: #243D3D;
+    border-color: #FF1A1A;
+}
+
+.btn_lt_bkgnd {
+    background-color: #243D3D;
+    color: #FFF1F1;
+    border-radius: 5px;
+}
+
+.btn_lt_bkgnd:hover {
+    background-color: #FF1A1A;
+    color: #243D3D;
+}
+
+.ovos_icon {
+    max-height: 32px;
+    padding: 2px;
+    border-radius: 5px;
+}
+
+.round_corners {
+    border-radius: 5px;
+}
+
+.round_top {
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.circle {
+    border-radius: 50%;
+}
+
+.pad_r_sm {
+    padding-right: 3px;
+}
+
+.scrolling_container {
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+
+.bkend_dropdown {
+    max-width: 40vw;
+    white-space: normal;
+    /* For Firefox: */
+    text-overflow: ellipsis;
+}
+
+#navbar_link_text {
+    font-size: 5vw;
+}
+
+#main_block {
+    width: 90vw;
+    border-radius: 5px;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+#info {
+    margin: 8px;
+}
+
+#login_title {
+    width: 100%;
+}
+
+#navbar_img {
+    margin-right: 4px;
+}
+
+#login_logout {
+    font-size: 3vw;
+    max-width: 25vw;
+}
+.header_value {
+    border-bottom: 2px solid #243d3d;
+}
+
+.table_value {
+    border-bottom: 1px solid #243D3D;
+}

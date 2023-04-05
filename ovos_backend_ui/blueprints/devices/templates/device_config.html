@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block head %}
+<link type="text/css" href="{{ url_for('devices.static', filename='css/devices.css') }}" rel="stylesheet">
+<script src="{{ url_for('devices.static', filename='js/devices.js') }}"></script>
+{% endblock head %}
+{% block body %}
+<div id="device_block">
+    <div id="main_block" class="container text-center">
+        <div id="header_title" class="highlight_bkgnd round_top">{{ page_title }}</div>
+        <div id="scrolling_container" class="scrolling_container">
+            <div class="row">
+                <div class="con p-2">
+                    <a href="{{ url_for('devices.pair_new_device') }}">
+                        <button type="button" class="btn btn_full">PAIR NEW DEVICE</button>
+                    </a>
+                </div>
+                <div class="w-100"></div>
+                <div class="con p-2">
+                {% if devices %}
+                {% for d, v in devices.items() %}
+                    <a href="#"><button type="button" class="btn btn_full">{{ v }}</button></a>
+                {% endfor %}
+                {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock body %}

@@ -1,0 +1,28 @@
+.btn_full {
+    max-width: 85vw;
+}
+
+.table_text_label {
+    max-width: 20%;
+}
+
+.table_text_value {
+    max-width: 40vw;
+    margin-top: 4px;
+    margin-bottom: 4px;
+}
+
+.scrolling_container {
+    padding: 8px;
+}
+
+select{
+    margin-top: 4px;
+    margin-bottom: 4px;
+}
+
+#location_button {
+    font-size: .75em;
+    margin-top: 4px;
+    margin-bottom: 4px;
+}

@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block head %}
+<link type="text/css" href="{{ url_for('location.static', filename='css/location.css') }}" rel="stylesheet">
+{% endblock head %}
+{% block body %}
+<div id="main_block" class="container">
+<div id="header_title" class="highlight_bkgnd text-center round_top">{{ page_title }}</div>
+    <div id="scrolling_container" class="scrolling_container text-center">
+    <p>{{ instructions }}</p>
+    <form id="search_location_form" name="search_location_form" action="/location/search/{{ parent_page }}" method="POST">
+        <input id="enter_location" name="enter_location" type="text" class="m-2 table_value" onchange=submit_from_text('search_location_form')>
+        <div>OR</div>
+        <a id="ip_locate" href=""><button id="ip_locate_button" class="btn m-2">Get Location From IP</button></a>
+    </form>
+    </div>
+{% endblock body %}
