@@ -1,0 +1,6 @@
+json_database
+Flask
+Flask-login
+Flask-SQLAlchemy
+sqlalchemy-json
+passlib

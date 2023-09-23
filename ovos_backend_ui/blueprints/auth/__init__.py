@@ -1,24 +1,37 @@
-from flask import Blueprint, render_template, redirect, request, flash, url_for
+from flask import Blueprint, render_template, redirect, request, flash, url_for, current_app
 from flask_login import login_user, logout_user, current_user
-from users import User
-from database import DEFAULT_DATABASE as db
-from info import NO_USER, NO_USERS, NO_ADMIN, WRONG_PASSWORD
-from exceptions import NoUserError
+from sqlalchemy import select
+# from ovos_backend_ui.users import User
+from ovos_backend_ui.database import User, db
+from ovos_backend_ui.info import NO_USER, NO_USERS, NO_ADMIN, WRONG_PASSWORD
+from ovos_backend_ui.exceptions import NoUserError
+from ovos_backend_ui.database import check_password, get_user_def
 
 auth = Blueprint('auth', __name__, template_folder='templates')
 
 @auth.route('/')
 def index():
-    if not db.admin_users:
-        if not db.users:
-            flash(NO_USERS)
-            return redirect(url_for('index'))
+    no_of_users = 0
+    no_of_admin_users = 0
+    print("no_of_admin_users")
+    with current_app.app_context():
+        my_query = select(User).where(User.is_admin == True)
+        no_of_admin_users = db.session.execute(my_query).scalar()
+        print("Im here")
+    if not no_of_admin_users:
+        print("No Admin")
+    # if not db.admin_users:
+    #     if not db.users:
+    #         flash(NO_USERS)
+    #         return render_template("base.html")
         flash(NO_ADMIN)
         return redirect(url_for('index'))
+    #     return "no admin"
     return redirect(url_for('auth.login'))
 
 @auth.route('/login', methods=["GET", "POST"])
 def login():
+    print(current_user.is_authenticated)
     if current_user.is_authenticated:
         try:
             if current_user.is_admin:
@@ -36,13 +49,18 @@ def login():
     if request.method == "POST":
         user_id = request.form.get("user_id")
         password = request.form.get("password")
+        print(user_id, password)
         try:
-            user = db.get_user(user_id)[0]
+            user = get_user_def(user_id)
+            print(f"user in login form {user}")
+            db.execute(user).first()
         except NoUserError:
             flash(NO_USER)
             return redirect(url_for("auth.login"))
-        if User.check_password(password, user["password"]):
-            user = User.user_from_db(user)
+        print(f"scalars {db.scalars(user)}")
+
+        if check_password(password, "user".password):
+            user = get_user_def(user_id)
             login_user(user)
             if user.is_admin:
                 return redirect(url_for("admin.index"))

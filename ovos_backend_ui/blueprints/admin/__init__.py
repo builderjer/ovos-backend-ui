@@ -4,7 +4,7 @@ import subprocess
 from flask import Blueprint, render_template, redirect, request, flash, url_for
 from flask_login import current_user
 
-from ovos_local_backend.configuration import CONFIGURATION
+from ovos_config import Configuration
 from ovos_utils.json_helper import merge_dict
 
 try:
@@ -41,26 +41,26 @@ def test():
     for k in request.form:
         # Take care of the bool values
         if k in bool_list: # Checkbox is checked
-            # Change value in CONFIGURATION
+            # Change value in Configuration
             # dev_auth must be reversed
             if k == "dev_auth":
-                CONFIGURATION["skip_auth"] = False
+                Configuration["skip_auth"] = False
             else:
-                CONFIGURATION[k] = True
+                Configuration[k] = True
             # Get rid of them from the list once processed
             bool_list.remove(k)
         # Go through the rest of the form that IS NOT a bool
         else:
-            CONFIGURATION[k] = request.form.get(k)
+            Configuration[k] = request.form.get(k)
     # Cycle through the rest of the bool_list that ARE NOT in the form
     for bl in bool_list:
         # Still have to deal with dev_auth
         if bl == "dev_auth":
-            CONFIGURATION["skip_auth"] = True
+            Configuration["skip_auth"] = True
         else:
-            CONFIGURATION[bl] = False
+            Configuration[bl] = False
         # Save the configuration
-        CONFIGURATION.store()
+        Configuration.store()
     subprocess.call("sudo systemctl restart local_backend", shell=True)
     return redirect(url_for("backend.index"))
 
@@ -89,28 +89,28 @@ def get_new_data():
                 "page_title": "ADMINISTRATION",
                 "tooltips": TOOLTIPS,
                 "changes": False,
-                "skip_auth": not CONFIGURATION['skip_auth'],
-                "override_location": CONFIGURATION['override_location'],
-                "geolocate": CONFIGURATION['geolocate'],
-                "selene_proxy": CONFIGURATION['selene']['enabled'],
+                "skip_auth": not Configuration['skip_auth'],
+                "override_location": Configuration['override_location'],
+                "geolocate": Configuration['geolocate'],
+                "selene_proxy": Configuration['selene']['enabled'],
                 "tts_ids": {
-                    "default": CONFIGURATION['default_tts'],
-                    "avaliable": list(CONFIGURATION['tts_configs'].keys())
+                    "default": Configuration['default_tts'],
+                    "avaliable": list(Configuration['tts_configs'].keys())
                     },
                 "ww_ids": {
-                    "default": CONFIGURATION['default_ww'],
-                    "avaliable": list(CONFIGURATION['ww_configs'].keys())
+                    "default": Configuration['default_ww'],
+                    "avaliable": list(Configuration['ww_configs'].keys())
                     },
                 "date_format": {
-                    "default": CONFIGURATION['date_format'],
+                    "default": Configuration['date_format'],
                     "avaliable": ['MDY', 'DMY']
                     },
                 "system_unit": {
-                    "default": CONFIGURATION['system_unit'],
+                    "default": Configuration['system_unit'],
                     "avaliable": ['metric', 'imperial']
                     },
                 "time_format": {
-                    "default": CONFIGURATION['time_format'],
+                    "default": Configuration['time_format'],
                     "avaliable": ['long', 'short']
                     },
                 "functions": {

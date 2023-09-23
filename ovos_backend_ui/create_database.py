@@ -24,10 +24,10 @@ def admin_login(db):
     username = str(input("Admin Username: "))
     for user in check_for_admin(db):
         print(user)
-        if user["users"][username]["admin"]
-        if user["admin"]["id"] == username:
+        # if user["users"][username]["admin"]:
+        if user["id"] == username:
             password = str(input(f"{username} Password: "))
-            if user["admin"]["password"] == password:
+            if user["password"] == password:
                 return True
         return False
 

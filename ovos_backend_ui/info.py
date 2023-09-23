@@ -15,6 +15,10 @@ Check back often for updates</p>
 
 <p>Author: BuilderJer</p></div>"""
 
+ENABLE_BACKEND_TEXT = """Either your backend is not enabled to use this app, or you do not have the correct password configured.
+
+It needs to match the 'admin_key' in your local backend configuration file.
+"""
 TOOLTIPS = {
     "DEVICE_AUTHENTICATION": """Device Authentication
 
@@ -86,7 +90,7 @@ NO_ADMIN = """<p>There is no Admin user available.</p>
 <p>Talk to your backend administrator to
 setup an administrator</p>
 
-<a href="auth/login"><button type="button" class="btn_lt_bkgnd text-center">
+<a href="/users/newuser"><button type="button" class="btn_lt_bkgnd text-center">
     Continue
     </button></a>"""
 

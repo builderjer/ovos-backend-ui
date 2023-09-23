@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block head %}
+{% endblock head %}
+{% block body %}
+<div id="main_block" class="container">
+    <div id="new_user_title" class="highlight_bkgnd round_top text-center">{{ page_title }}</div>
+    <div id="scrolling_container" class="scrolling_container">
+        <div id="page_info" class="lt_bkgnd round_corners pb-2">
+            <p class="text-center">This will create an Admin user to use with this app</p>
+        </div>
+        <form action="{{ url_for('users.adduser') }}" method="POST" class="m-2">
+            <div id="new_user_block" class="lt_bkgnd round_corners pb-1">
+
+                <div id="user_block" class="pt-1 pb-1">
+                    <label id="user_label" for="user_text" class="form-label">Username: (Required)</label>
+                    <input id="user_text" type="text" class="form-control" placeholder="User Name" name="user_id">
+                </div>
+                <div id="password_block" class="pb-1">
+                    <label id="password_label" for="password_text" class="form-label">Password: (Required)</label>
+                    <input id="password_text" type="password" class="form-control" placeholder="password" name="password">
+                </div>
+                <button id="new_user_button" type="submit" class="btn_lt_bkgnd mt-2">Create User</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock body %}

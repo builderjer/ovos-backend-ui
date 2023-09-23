@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% block head %}
+{% endblock head %}
+{% block body %}
+<div id="main_block" class="container">
+    <div id="new_user_title" class="highlight_bkgnd round_top text-center">{{ page_title }}</div>
+    <div id="scrolling_container" class="scrolling_container">
+        <form action="login" method="POST" class="m-2">
+            <div id="new_user_block" class="lt_bkgnd round_corners pb-1">
+
+                <div id="user_block" class="pt-1 pb-1">
+                    <label id="user_label" for="user_text" class="form-label">Username: (Required)</label>
+                    <input id="user_text" type="text" class="form-control" placeholder="User Name" name="user_id">
+                </div>
+                <div id="password_block" class="pb-1">
+                    <label id="password_label" for="password_text" class="form-label">Password: (Required)</label>
+                    <input id="password_text" type="password" class="form-control" placeholder="password" name="password">
+                </div>
+                <div id="real_name" class="pb-1">
+                    <div id="first_name_block" class="pb-1">
+                        <label id="first_name_label" for="first_name_text" class="form-label">First Name</label>
+                        <input id="first_name_text" type="text" class="form-control" placeholder="First Name" name="first_name">
+                    </div>
+                    <div id="last_name_block" class="pb-1">
+                        <label id="last_name_label" for="last_name_text" class="form-label">Last Name</label>
+                        <input id="last_name_text" type="text" class="form-control" placeholder="Last Name" name="last_name">
+                    </div>
+                </div>
+                <div id="address_block" class="pb-1">
+                    <div id="street_name_block" class="pb-1">
+                        <span>
+                            <label id="street_name_label" for="street_name_text" class="form-label">Street Name</label>
+                            <input id="street_name_text" type="text" class="form-control pr-1" placeholder="Street Name" name="street_name">
+                            <label id="apt_number_label" for="apt_number_text" class="form-label">Apt No</label>
+                            <input id="apt_number_text" type="text" class="form-control" placeholder="Apt No" name="apt_number">
+                        </span>
+                    </div>
+                    <div id="city_state_block" class="pb-1">
+                        <label id="city_lable" for="city_text" class="form-label">City</label>
+                        <input id="city_text" type="text" class="form-control pr-1" placeholder="City" name="city">
+                        <label id="state_lable" for="state_text" class="form-label">State</label>
+                        <input id="state_text" type="text" class="form-control pr-1" placeholder="State" name="state">
+                        <label id="zip_lable" for="zip_text" class="form-label">Zip Code</label>
+                        <input id="zip_text" type="text" class="form-control pr-1" placeholder="Zip Code" name="zip">
+                        <label id="country_lable" for="country_text" class="form-label">Country</label>
+                        <input id="country_text" type="text" class="form-control pr-1" placeholder="Country" name="country">
+                    </div>
+                    <div id="is_admin_block" class="pb-1">
+                        <label id="is_admin_lable" for="is_admin_box" class="form-label">Is Admin</label>
+                        <input id="is_admin_box" type="checkbox" name="is_admin">
+                    </div>
+                </div>
+                <button id="new_user_button" type="submit" class="btn_lt_bkgnd mt-2">Create User</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock body %}
